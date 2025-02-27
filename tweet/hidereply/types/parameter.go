@@ -32,6 +32,10 @@ func (p *UpdateInput) Body() io.Reader {
 	return strings.NewReader(jsonData)
 }
 
+func (p *UpdateInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *UpdateInput) ParameterMap() map[string]string {
 	return map[string]string{}
 }

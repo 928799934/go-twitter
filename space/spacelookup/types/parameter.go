@@ -46,6 +46,10 @@ func (p *GetInput) Body() io.Reader {
 	return nil
 }
 
+func (p *GetInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *GetInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Expansions, p.SpaceFields, p.UserFields)
@@ -87,6 +91,10 @@ func (p *ListInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *ListInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListInput) ParameterMap() map[string]string {
@@ -131,6 +139,10 @@ func (p *ListByCreatorIDsInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *ListByCreatorIDsInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListByCreatorIDsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListByCreatorIDsInput) ParameterMap() map[string]string {
@@ -183,6 +195,10 @@ func (p *ListBuyersInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListBuyersInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListBuyersInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Expansions, p.MediaFields, p.PlaceFields, p.PollFields, p.TweetFields, p.UserFields)
@@ -230,6 +246,10 @@ func (p *ListTweetsInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *ListTweetsInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListTweetsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListTweetsInput) ParameterMap() map[string]string {

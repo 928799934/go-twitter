@@ -56,6 +56,10 @@ func (p *ListJobsInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListJobsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListJobsInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 
@@ -88,6 +92,10 @@ func (p *GetJobInput) Body() io.Reader {
 	return nil
 }
 
+func (p *GetJobInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *GetJobInput) ParameterMap() map[string]string {
 	return map[string]string{}
 }
@@ -106,6 +114,10 @@ func (p *CreateJobInput) ResolveEndpoint(endpointBase string) string {
 func (p *CreateJobInput) Body() io.Reader {
 	jsonData, _ := jsoniter.MarshalToString(p)
 	return strings.NewReader(jsonData)
+}
+
+func (p *CreateJobInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *CreateJobInput) ParameterMap() map[string]string {

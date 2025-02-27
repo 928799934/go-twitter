@@ -64,6 +64,10 @@ func (p *ListsInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListsInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 
@@ -106,6 +110,10 @@ func (p *CreateInput) Body() io.Reader {
 	return strings.NewReader(jsonData)
 }
 
+func (p *CreateInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *CreateInput) ParameterMap() map[string]string {
 	return map[string]string{}
 }
@@ -133,6 +141,10 @@ func (p *DeleteInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *DeleteInput) Body() io.Reader {
 	return nil
+}
+
+func (p *DeleteInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *DeleteInput) ParameterMap() map[string]string {

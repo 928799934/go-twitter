@@ -79,6 +79,10 @@ func (p *ListTweetsInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListTweetsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListTweetsInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Exclude, p.Expansions, p.MediaFields, p.PlaceFields, p.PollFields, p.TweetFields, p.UserFields)
@@ -168,6 +172,10 @@ func (p *ListMentionsInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListMentionsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListMentionsInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Exclude, p.Expansions, p.MediaFields, p.PlaceFields, p.PollFields, p.TweetFields, p.UserFields)
@@ -255,6 +263,10 @@ func (p *ListReverseChronologicalInput) ResolveEndpoint(endpointBase string) str
 
 func (p *ListReverseChronologicalInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListReverseChronologicalInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListReverseChronologicalInput) ParameterMap() map[string]string {

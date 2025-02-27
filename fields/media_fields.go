@@ -40,3 +40,20 @@ func (fl MediaFieldList) Values() []string {
 
 	return s
 }
+
+type MediaCategory string
+
+const (
+	MediaCategoryTweetImage   MediaCategory = "tweet_image"
+	MediaCategoryTweetVideo   MediaCategory = "tweet_video"
+	MediaCategoryTweetGif     MediaCategory = "tweet_gif"
+	MediaCategoryDMVideo      MediaCategory = "dm_video"
+	MediaCategoryDMImage      MediaCategory = "dm_image"
+	MediaCategoryDMGif        MediaCategory = "dm_gif"
+	MediaCategoryAmplifyVideo MediaCategory = "amplify_video"
+	MediaCategorySubtitles    MediaCategory = "subtitles"
+)
+
+func (f MediaCategory) String() string {
+	return string(f)
+}

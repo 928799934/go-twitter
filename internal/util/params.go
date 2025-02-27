@@ -15,6 +15,7 @@ var (
 type Parameters interface {
 	ResolveEndpoint(endpointBase string) string
 	Body() io.Reader
+	ContentType() string
 	ParameterMap() map[string]string
 }
 

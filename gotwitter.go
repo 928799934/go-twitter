@@ -20,15 +20,16 @@ type AuthMethod string
 const (
 	OAuth1UserContext AuthMethod = "OAuth 1.0a User context"
 	OAuth2BearerToken AuthMethod = "OAuth 2.0 Bearer token"
+	OAuth2AccessToken AuthMethod = "OAuth 2.0 Access token"
 )
 
 type GoTwitter struct {
-	bearerToken string
+	bearerToken                    string // 官方的 (如果不存在 程序会通过apiKey, apiKeySecret, accessToken, accessTokenSecret 自动生成的)
+	apiKey, apiKeySecret           string // 官方的
+	accessToken, accessTokenSecret string // 官方的
 
-	apiKey, apiKeySecret           string
-	accessToken, accessTokenSecret string
-
-	clientID, clientSecret string
+	clientID, clientSecret string // 暂未使用
+	clientAccessToken      string
 }
 
 func NewGoTwitter(opts ...OptionFunc) *GoTwitter {
@@ -62,14 +63,18 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 			return err
 		}
 	case OAuth2BearerToken:
-		if header, err = getOAuth2Header(c); err != nil {
+		if header, err = getOAuth2BearerTokenHeader(c); err != nil {
+			return err
+		}
+	case OAuth2AccessToken:
+		if header, err = getOAuth2AccessTokenHeader(c); err != nil {
 			return err
 		}
 	default:
 		return fmt.Errorf("AuthMethod not support")
 	}
 
-	header["Content-Type"] = "application/json;charset=UTF-8"
+	header["Content-Type"] = p.ContentType()
 
 	switch method {
 	case http.MethodGet:
@@ -90,9 +95,20 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 		}
 	}
 
+	fmt.Println(uri)
+	fmt.Println(header)
+	fmt.Println(resp.StatusCode)
+	fmt.Println(string(jsonData))
+
+	// curl -X POST "
+	// https://api.twitter.com/2/media/upload?total_bytes=10000&media_type=video%2Fmp4&command=INIT" -H "Authorization: OAuth $OAUTH_SIGNATURE"
+	// https://api.twitter.com/2/media/upload?command=INIT&media_type=video%2Fmp4&total_bytes=10000
+
 	switch resp.StatusCode {
 	case http.StatusOK:
 	case http.StatusCreated:
+	case http.StatusAccepted:
+	case http.StatusNoContent:
 	default:
 		non200err, err := resolveNon2XX(resp, jsonData)
 		if err != nil {
@@ -100,6 +116,11 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 		}
 		return wrapWithAPIErr(non200err)
 	}
+
+	if i == nil {
+		return nil
+	}
+
 	return jsoniter.Unmarshal(jsonData, i)
 }
 

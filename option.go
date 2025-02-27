@@ -18,9 +18,16 @@ func WithBearerToken(bearerToken string) OptionFunc {
 }
 
 // OAuth 2.0 Client ID and Client Secret 未使用
-// func WithOAuth2(clientID, clientSecret string) OptionFunc {
-// 	return func(t *GoTwitter) {
-// 		t.clientID = clientID
-// 		t.clientSecret = clientSecret
-// 	}
-// }
+func WithOAuth2(clientID, clientSecret string) OptionFunc {
+	return func(t *GoTwitter) {
+		t.clientID = clientID
+		t.clientSecret = clientSecret
+	}
+}
+
+// OAuth 2.0 Client ID and Client Secret 生成的 Access Token
+func WithClientAccessToken(accessToken string) OptionFunc {
+	return func(t *GoTwitter) {
+		t.clientAccessToken = accessToken
+	}
+}

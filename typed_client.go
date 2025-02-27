@@ -44,7 +44,11 @@ func (c *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTP
 			return nil, err
 		}
 	case OAuth2BearerToken:
-		if header, err = getOAuth2Header(c.c); err != nil {
+		if header, err = getOAuth2BearerTokenHeader(c.c); err != nil {
+			return nil, err
+		}
+	case OAuth2AccessToken:
+		if header, err = getOAuth2AccessTokenHeader(c.c); err != nil {
 			return nil, err
 		}
 	default:

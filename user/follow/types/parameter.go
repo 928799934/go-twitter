@@ -61,6 +61,9 @@ func (p *ListFollowingsInput) ResolveEndpoint(endpointBase string) string {
 func (p *ListFollowingsInput) Body() io.Reader {
 	return nil
 }
+func (p *ListFollowingsInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
 
 func (p *ListFollowingsInput) ParameterMap() map[string]string {
 	m := map[string]string{}
@@ -128,6 +131,9 @@ func (p *ListFollowersInput) ResolveEndpoint(endpointBase string) string {
 func (p *ListFollowersInput) Body() io.Reader {
 	return nil
 }
+func (p *ListFollowersInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
 
 func (p *ListFollowersInput) ParameterMap() map[string]string {
 	m := map[string]string{}
@@ -179,6 +185,10 @@ func (p *CreateFollowingInput) Body() io.Reader {
 	return strings.NewReader(jsonData)
 }
 
+func (p *CreateFollowingInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *CreateFollowingInput) ParameterMap() map[string]string {
 	return map[string]string{}
 }
@@ -204,6 +214,10 @@ func (p *DeleteFollowingInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *DeleteFollowingInput) Body() io.Reader {
 	return nil
+}
+
+func (p *DeleteFollowingInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *DeleteFollowingInput) ParameterMap() map[string]string {

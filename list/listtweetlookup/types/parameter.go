@@ -61,6 +61,10 @@ func (p *ListInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 

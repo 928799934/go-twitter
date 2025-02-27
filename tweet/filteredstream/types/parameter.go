@@ -34,6 +34,10 @@ func (p *ListRulesInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListRulesInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListRulesInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 
@@ -87,6 +91,10 @@ func (p *CreateRulesInput) Body() io.Reader {
 	return strings.NewReader(jsonData)
 }
 
+func (p *CreateRulesInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *CreateRulesInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m["dry_run"] = strconv.FormatBool(p.DryRun)
@@ -119,6 +127,10 @@ func (p *DeleteRulesInput) ResolveEndpoint(endpointBase string) string {
 func (p *DeleteRulesInput) Body() io.Reader {
 	jsonData, _ := jsoniter.MarshalToString(p)
 	return strings.NewReader(jsonData)
+}
+
+func (p *DeleteRulesInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *DeleteRulesInput) ParameterMap() map[string]string {
@@ -176,6 +188,10 @@ func (p *SearchStreamInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *SearchStreamInput) Body() io.Reader {
 	return nil
+}
+
+func (p *SearchStreamInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *SearchStreamInput) ParameterMap() map[string]string {

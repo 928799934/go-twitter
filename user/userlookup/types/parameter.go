@@ -46,6 +46,10 @@ func (p *ListInput) Body() io.Reader {
 	return nil
 }
 
+func (p *ListInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *ListInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 
@@ -95,6 +99,10 @@ func (p *GetInput) Body() io.Reader {
 	return nil
 }
 
+func (p *GetInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *GetInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 
@@ -138,6 +146,10 @@ func (p *ListByUsernamesInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *ListByUsernamesInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListByUsernamesInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListByUsernamesInput) ParameterMap() map[string]string {
@@ -189,6 +201,10 @@ func (p *GetByUsernameInput) Body() io.Reader {
 	return nil
 }
 
+func (p *GetByUsernameInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *GetByUsernameInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Expansions, p.TweetFields, p.UserFields)
@@ -225,6 +241,10 @@ func (p *GetMeInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *GetMeInput) Body() io.Reader {
 	return nil
+}
+
+func (p *GetMeInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *GetMeInput) ParameterMap() map[string]string {

@@ -47,6 +47,10 @@ func (p *GetInput) Body() io.Reader {
 	return nil
 }
 
+func (p *GetInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *GetInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Expansions, p.ListFields, p.UserFields)
@@ -102,6 +106,10 @@ func (p *ListOwnedInput) ResolveEndpoint(endpointBase string) string {
 
 func (p *ListOwnedInput) Body() io.Reader {
 	return nil
+}
+
+func (p *ListOwnedInput) ContentType() string {
+	return "application/json;charset=UTF-8"
 }
 
 func (p *ListOwnedInput) ParameterMap() map[string]string {

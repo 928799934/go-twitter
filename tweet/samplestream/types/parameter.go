@@ -59,6 +59,10 @@ func (p *SampleStreamInput) Body() io.Reader {
 	return nil
 }
 
+func (p *SampleStreamInput) ContentType() string {
+	return "application/json;charset=UTF-8"
+}
+
 func (p *SampleStreamInput) ParameterMap() map[string]string {
 	m := map[string]string{}
 	m = fields.SetFieldsParams(m, p.Expansions, p.MediaFields, p.PlaceFields, p.PollFields, p.TweetFields, p.UserFields)
