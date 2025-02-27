@@ -95,15 +95,6 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 		}
 	}
 
-	fmt.Println(uri)
-	fmt.Println(header)
-	fmt.Println(resp.StatusCode)
-	fmt.Println(string(jsonData))
-
-	// curl -X POST "
-	// https://api.twitter.com/2/media/upload?total_bytes=10000&media_type=video%2Fmp4&command=INIT" -H "Authorization: OAuth $OAUTH_SIGNATURE"
-	// https://api.twitter.com/2/media/upload?command=INIT&media_type=video%2Fmp4&total_bytes=10000
-
 	switch resp.StatusCode {
 	case http.StatusOK:
 	case http.StatusCreated:
