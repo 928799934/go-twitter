@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"io"
 	"net/http"
+	"net/url"
 	"regexp"
 	"time"
 )
@@ -15,14 +16,17 @@ var (
 	regexpQuery = regexp.MustCompile(`([^%])(\+)`)
 )
 
-func getTransport() http.RoundTripper {
-	tr := http.DefaultTransport.(*http.Transport)
+func getTransport(proxy *url.URL) http.RoundTripper {
+	tr := http.DefaultTransport.(*http.Transport).Clone()
 	tr.TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	tr.DisableCompression = true
+	if proxy != nil {
+		tr.Proxy = http.ProxyURL(proxy)
+	}
 	return tr
 }
 
-func getDataWithHeader(url string /*params url.Values,*/, headers map[string]string) ([]byte, *http.Response, error) {
+func getDataWithHeader(url string /*params url.Values,*/, headers map[string]string, proxy *url.URL) ([]byte, *http.Response, error) {
 
 	/*
 		buf := bytes.NewBufferString(url)
@@ -35,7 +39,7 @@ func getDataWithHeader(url string /*params url.Values,*/, headers map[string]str
 		resp, err := doDataWithHeader(buf.String(), http.MethodGet, nil, headers)
 	*/
 
-	resp, err := doDataWithHeader(url, http.MethodGet, nil, headers)
+	resp, err := doDataWithHeader(url, http.MethodGet, nil, headers, proxy)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -47,8 +51,8 @@ func getDataWithHeader(url string /*params url.Values,*/, headers map[string]str
 	return buff, resp, nil
 }
 
-func postDataWithHeader(url string, ioParams io.Reader, headers map[string]string) ([]byte, *http.Response, error) {
-	resp, err := doDataWithHeader(url, http.MethodPost, ioParams, headers)
+func postDataWithHeader(url string, ioParams io.Reader, headers map[string]string, proxy *url.URL) ([]byte, *http.Response, error) {
+	resp, err := doDataWithHeader(url, http.MethodPost, ioParams, headers, proxy)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -60,8 +64,8 @@ func postDataWithHeader(url string, ioParams io.Reader, headers map[string]strin
 	return buff, resp, nil
 }
 
-func putDataWithHeader(url string, ioParams io.Reader, headers map[string]string) ([]byte, *http.Response, error) {
-	resp, err := doDataWithHeader(url, http.MethodPut, ioParams, headers)
+func putDataWithHeader(url string, ioParams io.Reader, headers map[string]string, proxy *url.URL) ([]byte, *http.Response, error) {
+	resp, err := doDataWithHeader(url, http.MethodPut, ioParams, headers, proxy)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -73,8 +77,8 @@ func putDataWithHeader(url string, ioParams io.Reader, headers map[string]string
 	return buff, resp, nil
 }
 
-func deleteDataWithHeader(url string, headers map[string]string) ([]byte, *http.Response, error) {
-	resp, err := doDataWithHeader(url, http.MethodDelete, nil, headers)
+func deleteDataWithHeader(url string, headers map[string]string, proxy *url.URL) ([]byte, *http.Response, error) {
+	resp, err := doDataWithHeader(url, http.MethodDelete, nil, headers, proxy)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -86,10 +90,10 @@ func deleteDataWithHeader(url string, headers map[string]string) ([]byte, *http.
 	return buff, resp, nil
 }
 
-func doDataWithHeader(url, method string, ioParams io.Reader, headers map[string]string) (*http.Response, error) {
+func doDataWithHeader(url, method string, ioParams io.Reader, headers map[string]string, proxy *url.URL) (*http.Response, error) {
 	cli := &http.Client{
 		Timeout:   readTimeout,
-		Transport: getTransport(),
+		Transport: getTransport(proxy),
 	}
 
 	req, err := http.NewRequest(method, url, ioParams)

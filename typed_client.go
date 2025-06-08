@@ -23,7 +23,7 @@ func NewTypedClient[T util.Response](c *GoTwitter) *TypedClient[T] {
 	}
 }
 
-func (c *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTPMethod, auth AuthMethod, p util.Parameters) (*StreamClient[T], error) {
+func (t *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTPMethod, auth AuthMethod, p util.Parameters) (*StreamClient[T], error) {
 
 	var (
 		header map[string]string
@@ -31,6 +31,7 @@ func (c *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTP
 		resp   *http.Response
 	)
 
+	c := t.c
 	uri = p.ResolveEndpoint(uri)
 
 	switch auth {
@@ -40,15 +41,15 @@ func (c *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTP
 			params.Set(k, v)
 		}
 
-		if header, err = getOAuth1Header(c.c, method, uri, params); err != nil {
+		if header, err = getOAuth1Header(c, method, uri, params); err != nil {
 			return nil, err
 		}
 	case OAuth2BearerToken:
-		if header, err = getOAuth2BearerTokenHeader(c.c); err != nil {
+		if header, err = getOAuth2BearerTokenHeader(c); err != nil {
 			return nil, err
 		}
 	case OAuth2AccessToken:
-		if header, err = getOAuth2AccessTokenHeader(c.c); err != nil {
+		if header, err = getOAuth2AccessTokenHeader(c); err != nil {
 			return nil, err
 		}
 	default:
@@ -59,19 +60,19 @@ func (c *TypedClient[T]) CallStream(ctx context.Context, uri string, method HTTP
 
 	switch method {
 	case http.MethodGet:
-		if resp, err = doDataWithHeader(uri, method, nil, header); err != nil {
+		if resp, err = doDataWithHeader(uri, method, nil, header, c.proxy); err != nil {
 			return nil, err
 		}
 	case http.MethodPost:
-		if resp, err = doDataWithHeader(uri, method, p.Body(), header); err != nil {
+		if resp, err = doDataWithHeader(uri, method, p.Body(), header, c.proxy); err != nil {
 			return nil, err
 		}
 	case http.MethodPut:
-		if resp, err = doDataWithHeader(uri, method, p.Body(), header); err != nil {
+		if resp, err = doDataWithHeader(uri, method, p.Body(), header, c.proxy); err != nil {
 			return nil, err
 		}
 	case http.MethodDelete:
-		if resp, err = doDataWithHeader(uri, method, nil, header); err != nil {
+		if resp, err = doDataWithHeader(uri, method, nil, header, c.proxy); err != nil {
 			return nil, err
 		}
 	}

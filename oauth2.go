@@ -26,7 +26,7 @@ func getOAuth2BearerTokenHeader(twitter *GoTwitter) (map[string]string, error) {
 
 		uri := "https://api.twitter.com/oauth2/token"
 
-		jsonData, resp, err := postDataWithHeader(uri, strings.NewReader(params.Encode()), header)
+		jsonData, resp, err := postDataWithHeader(uri, strings.NewReader(params.Encode()), header, twitter.proxy)
 		if err != nil {
 			return nil, err
 		}

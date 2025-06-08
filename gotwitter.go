@@ -24,6 +24,7 @@ const (
 )
 
 type GoTwitter struct {
+	proxy                          *url.URL
 	bearerToken                    string // 官方的 (如果不存在 程序会通过apiKey, apiKeySecret, accessToken, accessTokenSecret 自动生成的)
 	apiKey, apiKeySecret           string // 官方的
 	accessToken, accessTokenSecret string // 官方的
@@ -78,22 +79,24 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 
 	switch method {
 	case http.MethodGet:
-		if jsonData, resp, err = getDataWithHeader(uri, header); err != nil {
+		if jsonData, resp, err = getDataWithHeader(uri, header, c.proxy); err != nil {
 			return err
 		}
 	case http.MethodPost:
-		if jsonData, resp, err = postDataWithHeader(uri, p.Body(), header); err != nil {
+		if jsonData, resp, err = postDataWithHeader(uri, p.Body(), header, c.proxy); err != nil {
 			return err
 		}
 	case http.MethodPut:
-		if jsonData, resp, err = putDataWithHeader(uri, p.Body(), header); err != nil {
+		if jsonData, resp, err = putDataWithHeader(uri, p.Body(), header, c.proxy); err != nil {
 			return err
 		}
 	case http.MethodDelete:
-		if jsonData, resp, err = deleteDataWithHeader(uri, header); err != nil {
+		if jsonData, resp, err = deleteDataWithHeader(uri, header, c.proxy); err != nil {
 			return err
 		}
 	}
+
+	fmt.Println(string(jsonData))
 
 	switch resp.StatusCode {
 	case http.StatusOK:

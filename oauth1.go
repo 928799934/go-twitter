@@ -17,6 +17,13 @@ const (
 	OAuthSignatureMethodHMACSHA1 = "HMAC-SHA1"
 )
 
+// OAuth oauth_consumer_key="guozcI4V2Fk4OFsLePpur4Szi",
+// oauth_token="1925435862797754368-HTa5eU3etkh6vfFmEXVf1gnn9rzrkO",
+// oauth_signature_method="HMAC-SHA1",
+// oauth_timestamp="1749380097",
+// oauth_nonce="h9vc8BPeUlF",
+// oauth_version="1.0",
+// oauth_signature="9xffAE3Quc7VutetAThE7xeyhoQ%3D"
 func getOAuth1Header(twitter *GoTwitter, method, uri string, params url.Values) (map[string]string, error) {
 	if twitter.apiKey == "" || twitter.apiKeySecret == "" || twitter.accessToken == "" || twitter.accessTokenSecret == "" {
 		return nil, fmt.Errorf("apiKey, apiKeySecret, accessToken, accessTokenSecret cannot be empty at the same time")
@@ -25,7 +32,9 @@ func getOAuth1Header(twitter *GoTwitter, method, uri string, params url.Values) 
 	if err != nil {
 		return nil, err
 	}
+	// nonce = "h9vc8BPeUlF"
 	timestamp := genOAuthTimestamp()
+	// timestamp = "1749380097"
 
 	// http://aaa.com?xxxx=aaaa&xxx=aaaa => http://aaa.com
 	uri = getURIBase(uri)

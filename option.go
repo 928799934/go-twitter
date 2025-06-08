@@ -1,6 +1,16 @@
 package gotwitter
 
+import (
+	"net/url"
+)
+
 type OptionFunc func(*GoTwitter)
+
+func WithProxy(proxyURI string) OptionFunc {
+	return func(t *GoTwitter) {
+		t.proxy, _ = url.Parse(proxyURI)
+	}
+}
 
 func WithOAuth(apiKey, apiKeySecret, accessToken, accessTokenSecret string) OptionFunc {
 	return func(t *GoTwitter) {
