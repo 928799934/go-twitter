@@ -96,8 +96,6 @@ func (c *GoTwitter) CallAPI(ctx context.Context, uri string, method HTTPMethod, 
 		}
 	}
 
-	fmt.Println(string(jsonData))
-
 	switch resp.StatusCode {
 	case http.StatusOK:
 	case http.StatusCreated:
