@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	createEndpoint = "https://api.twitter.com/2/tweets"
-	deleteEndpoint = "https://api.twitter.com/2/tweets/:id"
+	createEndpoint = gotwitter.Domain + "/2/tweets"
+	deleteEndpoint = gotwitter.Domain + "/2/tweets/:id"
 )
 
 // Creates a Tweet on behalf of an authenticated user.

@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	listEndpoint = "https://api.twitter.com/2/spaces/search"
+	listEndpoint = gotwitter.Domain + "/2/spaces/search"
 )
 
 // Return live or scheduled Spaces matching your specified search terms.

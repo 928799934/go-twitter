@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	listRecentEndpoint = "https://api.twitter.com/2/tweets/search/recent"
-	listAllEndpoint    = "https://api.twitter.com/2/tweets/search/all"
+	listRecentEndpoint = gotwitter.Domain + "/2/tweets/search/recent"
+	listAllEndpoint    = gotwitter.Domain + "/2/tweets/search/all"
 )
 
 // The recent search endpoint returns Tweets from the last seven days that match a search query.

@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	listTweetsEndpoint               = "https://api.twitter.com/2/users/:id/tweets"
-	listMentionsEndpoint             = "https://api.twitter.com/2/users/:id/mentions"
-	listReverseChronologicalEndpoint = "https://api.twitter.com/2/users/:id/timelines/reverse_chronological"
+	listTweetsEndpoint               = gotwitter.Domain + "/2/users/:id/tweets"
+	listMentionsEndpoint             = gotwitter.Domain + "/2/users/:id/mentions"
+	listReverseChronologicalEndpoint = gotwitter.Domain + "/2/users/:id/timelines/reverse_chronological"
 )
 
 // Returns Tweets composed by a single user, specified by the requested user ID.

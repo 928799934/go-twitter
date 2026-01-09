@@ -8,7 +8,7 @@ import (
 	"github.com/928799934/go-twitter/tweet/hidereply/types"
 )
 
-const updateEndpoint = "https://api.twitter.com/2/tweets/:id/hidden"
+const updateEndpoint = gotwitter.Domain + "/2/tweets/:id/hidden"
 
 // Hides or unhides a reply to a Tweet.
 // https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/api-reference/put-tweets-id-hidden

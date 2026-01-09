@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	listEndpoint = "https://api.twitter.com/2/tweets/:id/quote_tweets"
+	listEndpoint = gotwitter.Domain + "/2/tweets/:id/quote_tweets"
 )
 
 // Returns Quote Tweets for a Tweet specified by the requested Tweet ID.

@@ -10,9 +10,9 @@ import (
 )
 
 const (
-	initializeEndpoint = "https://api.x.com/2/media/upload/initialize"
-	appendEndpoint     = "https://api.x.com/2/media/upload/:mediaID/append"
-	finalizeEndpoint   = "https://api.x.com/2/media/upload/:mediaID/finalize"
+	initializeEndpoint = gotwitter.Domain + "/2/media/upload/initialize"
+	appendEndpoint     = gotwitter.Domain + "/2/media/upload/:mediaID/append"
+	finalizeEndpoint   = gotwitter.Domain + "/2/media/upload/:mediaID/finalize"
 )
 
 func Initialize(ctx context.Context, c *gotwitter.GoTwitter, p *types.InitializeInput) (*types.InitializeOutput, error) {

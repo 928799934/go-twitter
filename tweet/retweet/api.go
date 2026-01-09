@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	listUsersEndpoint = "https://api.twitter.com/2/tweets/:id/retweeted_by"
-	createEndpoint    = "https://api.twitter.com/2/users/:id/retweets"
-	deleteEndpoint    = "https://api.twitter.com/2/users/:id/retweets/:source_tweet_id"
+	listUsersEndpoint = gotwitter.Domain + "/2/tweets/:id/retweeted_by"
+	createEndpoint    = gotwitter.Domain + "/2/users/:id/retweets"
+	deleteEndpoint    = gotwitter.Domain + "/2/users/:id/retweets/:source_tweet_id"
 )
 
 // Allows you to get information about who has Retweeted a Tweet.

@@ -9,10 +9,10 @@ import (
 )
 
 const (
-	initEndpoint     = "https://api.twitter.com/2/media/upload"
-	appendEndpoint   = "https://api.twitter.com/2/media/upload"
-	finalizeEndpoint = "https://api.twitter.com/2/media/upload"
-	statusEndpoint   = "https://api.twitter.com/2/media/upload"
+	initEndpoint     = gotwitter.Domain + "/2/media/upload"
+	appendEndpoint   = gotwitter.Domain + "/2/media/upload"
+	finalizeEndpoint = gotwitter.Domain + "/2/media/upload"
+	statusEndpoint   = gotwitter.Domain + "/2/media/upload"
 )
 
 func Init(ctx context.Context, c *gotwitter.GoTwitter, p *types.InitInput) (*types.InitOutput, error) {

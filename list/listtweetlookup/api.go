@@ -8,7 +8,7 @@ import (
 	"github.com/928799934/go-twitter/list/listtweetlookup/types"
 )
 
-const listEndpoint = "https://api.twitter.com/2/lists/:id/tweets"
+const listEndpoint = gotwitter.Domain + "/2/lists/:id/tweets"
 
 // Returns a list of Tweets from the specified List.
 // https://developer.twitter.com/en/docs/twitter-api/lists/list-tweets/api-reference/get-lists-id-tweets

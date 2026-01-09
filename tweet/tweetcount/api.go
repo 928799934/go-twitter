@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	listRecentEndpoint = "https://api.twitter.com/2/tweets/counts/recent"
-	listAllEndpoint    = "https://api.twitter.com/2/tweets/counts/all"
+	listRecentEndpoint = gotwitter.Domain + "/2/tweets/counts/recent"
+	listAllEndpoint    = gotwitter.Domain + "/2/tweets/counts/all"
 )
 
 // The recent Tweet counts endpoint returns count of Tweets from the last seven days that match a search query.

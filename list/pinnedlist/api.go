@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	listEndpoint   = "https://api.twitter.com/2/users/:id/pinned_lists"
-	createEndpoint = "https://api.twitter.com/2/users/:id/pinned_lists"
-	deleteEndpoint = "https://api.twitter.com/2/users/:id/pinned_lists/:list_id"
+	listEndpoint   = gotwitter.Domain + "/2/users/:id/pinned_lists"
+	createEndpoint = gotwitter.Domain + "/2/users/:id/pinned_lists"
+	deleteEndpoint = gotwitter.Domain + "/2/users/:id/pinned_lists/:list_id"
 )
 
 // Returns the Lists pinned by a specified user.

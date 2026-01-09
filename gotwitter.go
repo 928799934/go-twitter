@@ -18,6 +18,8 @@ type HTTPMethod = string
 type AuthMethod string
 
 const (
+	Domain = "https://api.x.com"
+
 	OAuth1UserContext AuthMethod = "OAuth 1.0a User context"
 	OAuth2BearerToken AuthMethod = "OAuth 2.0 Bearer token"
 	OAuth2AccessToken AuthMethod = "OAuth 2.0 Access token"

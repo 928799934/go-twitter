@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	sampleStreamEndpoint = "https://api.twitter.com/2/tweets/sample/stream"
+	sampleStreamEndpoint = gotwitter.Domain + "/2/tweets/sample/stream"
 )
 
 // Streams about 1% of all Tweets in real-time.

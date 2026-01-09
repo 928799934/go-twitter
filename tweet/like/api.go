@@ -9,10 +9,10 @@ import (
 )
 
 const (
-	listUsersEndpoint = "https://api.twitter.com/2/tweets/:id/liking_users"
-	listEndpoint      = "https://api.twitter.com/2/users/:id/liked_tweets"
-	createEndpoint    = "https://api.twitter.com/2/users/:id/likes"
-	deleteEndpoint    = "https://api.twitter.com/2/users/:id/likes/:tweet_id"
+	listUsersEndpoint = gotwitter.Domain + "/2/tweets/:id/liking_users"
+	listEndpoint      = gotwitter.Domain + "/2/users/:id/liked_tweets"
+	createEndpoint    = gotwitter.Domain + "/2/users/:id/likes"
+	deleteEndpoint    = gotwitter.Domain + "/2/users/:id/likes/:tweet_id"
 )
 
 // Allows you to get information about a Tweet’s liking users.

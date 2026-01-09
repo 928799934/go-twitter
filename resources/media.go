@@ -1,38 +1,26 @@
 package resources
 
-type ProcessingInfoState string
-
-const (
-	ProcessingInfoStatePending    ProcessingInfoState = "pending"
-	ProcessingInfoStateInProgress ProcessingInfoState = "in_progress"
-	ProcessingInfoStateSucceeded  ProcessingInfoState = "succeeded"
-	ProcessingInfoStateFailed     ProcessingInfoState = "failed"
-)
-
-type ProcessingInfo struct {
-	// Number of seconds to check again for status
-	CheckAfterSecs int `json:"check_after_secs"`
-
-	// Percent of upload progress
-	ProgressPercent int `json:"progress_percent"`
-
-	// State of upload
-	State ProcessingInfoState `json:"state"`
+type UploadInit struct {
+	ID               *string `json:"id"`
+	MediaKey         *string `json:"media_key"`
+	ExpiresAfterSecs *int    `json:"expires_after_secs"`
 }
 
-type UploadedMedia struct {
-	// The unique identifier of this Media.
-	MediaID string `json:"id"`
-
-	// The Media Key identifier for this attachment.
-	MediaKey string `json:"media_key"`
-
-	// Number of seconds after which upload session expires.
-	ExpiresAfterSecs int `json:"expires_after_secs"`
-
-	// Processing information for the media.
-	ProcessingInfo ProcessingInfo `json:"processing_info"`
-
-	// Size of the upload
-	Size uint `json:"size"`
+type UploadFinalize struct {
+	ID               *string `json:"id"`
+	MediaKey         *string `json:"media_key"`
+	ExpiresAfterSecs *int    `json:"expires_after_secs,omitempty"`
+	Size             *int    `json:"size,omitempty"`
+	Video            *struct {
+		Type string `json:"video_type"`
+	} `json:"video,omitempty"`
+	Image *struct {
+		Type string `json:"image_type"`
+		W    int    `json:"width"`
+		H    int    `json:"height"`
+	} `json:"image,omitempty"`
+	ProcessingInfo *struct {
+		State          *string `json:"state"` // state transition flow is pending -> in_progress -> [failed|succeeded]
+		CheckAfterSecs *int    `json:"check_after_secs"`
+	} `json:"processing_info,omitempty"`
 }

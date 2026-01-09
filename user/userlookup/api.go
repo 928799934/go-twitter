@@ -9,11 +9,11 @@ import (
 )
 
 const (
-	listEndpoint            = "https://api.twitter.com/2/users"
-	getEndpoint             = "https://api.twitter.com/2/users/:id"
-	listByUsernamesEndpoint = "https://api.twitter.com/2/users/by"
-	getByUsernameEndpoint   = "https://api.twitter.com/2/users/by/username/:username"
-	getMeEndpoint           = "https://api.twitter.com/2/users/me"
+	listEndpoint            = gotwitter.Domain + "/2/users"
+	getEndpoint             = gotwitter.Domain + "/2/users/:id"
+	listByUsernamesEndpoint = gotwitter.Domain + "/2/users/by"
+	getByUsernameEndpoint   = gotwitter.Domain + "/2/users/by/username/:username"
+	getMeEndpoint           = gotwitter.Domain + "/2/users/me"
 )
 
 // GET /2/users

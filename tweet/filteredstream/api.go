@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	listRulesEndpoint           = "https://api.twitter.com/2/tweets/search/stream/rules"
-	createOrDeleteRulesEndpoint = "https://api.twitter.com/2/tweets/search/stream/rules"
-	searchStreamEndpoint        = "https://api.twitter.com/2/tweets/search/stream"
+	listRulesEndpoint           = gotwitter.Domain + "/2/tweets/search/stream/rules"
+	createOrDeleteRulesEndpoint = gotwitter.Domain + "/2/tweets/search/stream/rules"
+	searchStreamEndpoint        = gotwitter.Domain + "/2/tweets/search/stream"
 )
 
 // Return a list of rules currently active on the streaming endpoint, either as a list or individually.

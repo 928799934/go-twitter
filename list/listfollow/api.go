@@ -9,10 +9,10 @@ import (
 )
 
 const (
-	listFollowersEndpoint = "https://api.twitter.com/2/lists/:id/followers"
-	listFollowedEndpoint  = "https://api.twitter.com/2/users/:id/followed_lists"
-	createEndpoint        = "https://api.twitter.com/2/users/:id/followed_lists"
-	deleteEndpoint        = "https://api.twitter.com/2/users/:id/followed_lists/:list_id"
+	listFollowersEndpoint = gotwitter.Domain + "/2/lists/:id/followers"
+	listFollowedEndpoint  = gotwitter.Domain + "/2/users/:id/followed_lists"
+	createEndpoint        = gotwitter.Domain + "/2/users/:id/followed_lists"
+	deleteEndpoint        = gotwitter.Domain + "/2/users/:id/followed_lists/:list_id"
 )
 
 // Returns a list of users who are followers of the specified List.

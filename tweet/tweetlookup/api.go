@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	listEndpoint = "https://api.twitter.com/2/tweets"
-	getEndpoint  = "https://api.twitter.com/2/tweets/:id"
+	listEndpoint = gotwitter.Domain + "/2/tweets"
+	getEndpoint  = gotwitter.Domain + "/2/tweets/:id"
 )
 
 // Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
